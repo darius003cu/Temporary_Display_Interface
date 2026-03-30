@@ -193,17 +193,17 @@ extern "C"{
 
 //Warning lights boxes
 
-#define TOP_LEFT_INVERTER_CORNER		210
-#define BOTTOM_RIGHT_INVERTER_CORNER	299
+#define TL_INVERTER_CORNER					210
+#define BR_INVERTER_CORNER					299
 
-#define TOP_LEFT_BATTERY_CORNER			304
-#define BOTTOM_RIGHT_BATTERY_CORNER		400
+#define TL_BATTERY_CORNER					304
+#define BR_BATTERY_CORNER					400
 
-#define TOP_LEFT_ACCEL_CORNER			405
-#define BOTTOM_RIGHT_ACCEL_CORNER		495
+#define TL_ACCEL_CORNER						405
+#define BR_ACCEL_CORNER						495
 
-#define TOP_LEFT_BRAKE_CORNER			500
-#define BOTTOM_RIGHT_BRAKE_CORNER		590
+#define TL_BRAKE_CORNER						500
+#define BR_BRAKE_CORNER						590
 
 #define BOX_HEIGHT						55
 #define BOX_HEIGHT_OFFSET				21
@@ -225,6 +225,8 @@ extern "C"{
 #define LOWER_BARS_HEIGHT					437
 #define LOWER_BARS_ENDS						480
 
+#define EDGE_STRIP_ENDS						480
+
 //Speedometer's Cursor
 
 #define INNER_RADIUS						130
@@ -232,6 +234,8 @@ extern "C"{
 #define CENTER_X							220
 #define CENTER_Y							300
 #define PI									3.1415926535
+
+/* Speedometer Hash Marks */
 
 #define HASH1_X 48
 #define HASH1_Y 377
@@ -288,7 +292,27 @@ extern "C"{
 #define HASH11_END_X 381
 #define HASH11_END_Y 372
 
+/* Critical Warnings Colors */
+#define TL_CW_CELL_VOLTAGE_X
+#define BL_CW_CELL_VOLTAGE_X
 
+
+/* ACCEL BAR */
+
+#define ACCEL_BAR_ORIGIN_X	544
+#define ACCEL_BAR_ORIGIN_Y	45
+#define ACCEL_BAR_END_X		750
+
+#define BRAKE_BAR_ORIGIN_X	253
+#define BRAKE_BAR_ORIGIN_Y	45
+
+
+/* Font Defines */
+
+#define LARGE_FONT			31
+#define MEDIUM_FONT			30
+#define SMALL_FONT			23
+#define CELSIUS_SYMBOL		27
 
 
 
