@@ -594,10 +594,10 @@ void Display_Update(uint8_t Acceleration, uint8_t Brake, uint8_t Battery_Percent
 		{
 			wr32(RAM_DL + (index+=4), color_rgb(255, 0, 0));
 			wr32(RAM_DL + (index+=4), begin(EDGE_STRIP_R));
-			wr32(RAM_DL + (index+=4), vertex2f(480, 195));
-			wr32(RAM_DL + (index+=4), vertex2f(480, 290));
-			wr32(RAM_DL + (index+=4), vertex2f(700, 290));
-			wr32(RAM_DL + (index+=4), vertex2f(763, 335));
+			wr32(RAM_DL + (index+=4), vertex2f(WARNING_CELL_TEMP_X, WARNING_CELL_TEMP_Y));
+			wr32(RAM_DL + (index+=4), vertex2f(WARNING_CELL_TEMP_X, WARNING_CELL_TEMP_Y + WARNING_CELL_TEMP_HEIGHT));
+			wr32(RAM_DL + (index+=4), vertex2f(WARNING_CELL_TEMP_X + WARNING_CELL_TEMP_WIDTH, WARNING_CELL_TEMP_Y + WARNING_CELL_TEMP_HEIGHT));
+			wr32(RAM_DL + (index+=4), vertex2f(WARNING_CELL_TEMP_X + WARNING_CELL_TEMP_DIAGONAL_WIDTH, WARNING_CELL_TEMP_Y + WARNING_CELL_TEMP_DIAGONAL_HEIGHT));
 			wr32(RAM_DL + (index+=4), color_rgb(0, 0, 0));
 			wr32(RAM_DL + (index+=4), begin(EDGE_STRIP_R));
 			wr32(RAM_DL + (index+=4), vertex2f(724, 190));
@@ -608,10 +608,10 @@ void Display_Update(uint8_t Acceleration, uint8_t Brake, uint8_t Battery_Percent
 		{
 			wr32(RAM_DL + (index+=4), color_rgb(255, 0, 0));
 			wr32(RAM_DL + (index+=4), begin(EDGE_STRIP_R));
-			wr32(RAM_DL + (index+=4), vertex2f(450, 86));
-			wr32(RAM_DL + (index+=4), vertex2f(450, 190));
-			wr32(RAM_DL + (index+=4), vertex2f(720, 190));
-			wr32(RAM_DL + (index+=4), vertex2f(763, 221));
+			wr32(RAM_DL + (index+=4), vertex2f(WARNING_CELL_X, WARNING_CELL_Y));
+			wr32(RAM_DL + (index+=4), vertex2f(WARNING_CELL_X, WARNING_CELL_Y + WARNING_CELL_HEIGHT));
+			wr32(RAM_DL + (index+=4), vertex2f(WARNING_CELL_X + WARNING_CELL_WIDTH, WARNING_CELL_Y + WARNING_CELL_HEIGHT));
+			wr32(RAM_DL + (index+=4), vertex2f(WARNING_CELL_X + WARNING_CELL_DIAGONAL_WIDTH, WARNING_CELL_Y + WARNING_CELL_DIAGONAL_HEIGHT));
 		}
 
 		wr32(RAM_DL + (index+=4), color_rgb(0, 0, 0));
@@ -630,19 +630,19 @@ void Display_Update(uint8_t Acceleration, uint8_t Brake, uint8_t Battery_Percent
 		wr32(RAM_DL + (index+=4), line_width(60));
 		wr32(RAM_DL + (index+=4), begin(LINES));
 		//Diagonal ends
-		wr32(RAM_DL + (index+=4), vertex2f(UPPER_BORDER_START, UPPER_BORDER_HEIGHT));
-		wr32(RAM_DL + (index+=4), vertex2f(UPPER_BORDER_START - UPPER_BORDER_DIAGONAL, 0));
-		wr32(RAM_DL + (index+=4), vertex2f(UPPER_BORDER_END, UPPER_BORDER_HEIGHT));
-		wr32(RAM_DL + (index+=4), vertex2f(UPPER_BORDER_END + UPPER_BORDER_DIAGONAL, 0));
+		wr32(RAM_DL + (index+=4), vertex2f(UPPER_BORDER_X, UPPER_BORDER_Y));
+		wr32(RAM_DL + (index+=4), vertex2f(UPPER_BORDER_X - UPPER_BORDER_OFFSET, 0));
+		wr32(RAM_DL + (index+=4), vertex2f(UPPER_BORDER_X + UPPER_BORDER_WIDTH, UPPER_BORDER_Y));
+		wr32(RAM_DL + (index+=4), vertex2f(UPPER_BORDER_X + UPPER_BORDER_WIDTH + UPPER_BORDER_OFFSET, 0));
+
 		//Vertical upper indicators
 		wr32(RAM_DL + (index+=4), line_width(64));
 		wr32(RAM_DL + (index+=4), vertex2f(UPPER_VERTICAL_MIDDLE_LINE, 0));
-		wr32(RAM_DL + (index+=4), vertex2f(UPPER_VERTICAL_MIDDLE_LINE, UPPER_BORDER_HEIGHT));
+		wr32(RAM_DL + (index+=4), vertex2f(UPPER_VERTICAL_MIDDLE_LINE, UPPER_BORDER_Y));
 		wr32(RAM_DL + (index+=4), vertex2f(UPPER_VERTICAL_LEFT_LINE, 0));
-		wr32(RAM_DL + (index+=4), vertex2f(UPPER_VERTICAL_LEFT_LINE, UPPER_BORDER_HEIGHT));
+		wr32(RAM_DL + (index+=4), vertex2f(UPPER_VERTICAL_LEFT_LINE, UPPER_BORDER_Y));
 		wr32(RAM_DL + (index+=4), vertex2f(UPPER_VERTICAL_RIGHT_LINE, 0));
-		wr32(RAM_DL + (index+=4), vertex2f(UPPER_VERTICAL_RIGHT_LINE, UPPER_BORDER_HEIGHT));
-
+		wr32(RAM_DL + (index+=4), vertex2f(UPPER_VERTICAL_RIGHT_LINE, UPPER_BORDER_Y));
 
 		//Speedometer: Design
 
@@ -844,13 +844,13 @@ void Display_Update(uint8_t Acceleration, uint8_t Brake, uint8_t Battery_Percent
 		/* BATTERY PERCENTAGE BAR */
 		wr32(RAM_DL + (index+=4), line_width(16));
 		wr32(RAM_DL + (index+=4), begin(RECTS));
-		wr32(RAM_DL + (index+=4), vertex2f(VERTICAL_BATTERY_BORDER, VERTICAL_BATTERY_BORDER_ORIGIN));
-		wr32(RAM_DL + (index+=4), vertex2f(VERTICAL_BATTERY_BORDER + 8, VERTICAL_BATTERY_BORDER_END));
-		wr32(RAM_DL + (index+=4), vertex2f(HORIZONTAL_BATTERY_BORDER_ORIGIN, HORIZONTAL_BATTERY_BORDER_HEIGHT));
-		wr32(RAM_DL + (index+=4), vertex2f(HORIZONTAL_BATTER_BORDER_END, HORIZONTAL_BATTERY_BORDER_HEIGHT + BORDER_THICKNESS));
+		wr32(RAM_DL + (index+=4), vertex2f(BATTERY_BORDER_X, BATTERY_BORDER_Y));
+		wr32(RAM_DL + (index+=4), vertex2f(BATTERY_BORDER_X + BATTERY_BORDER_WIDTH, BATTERY_BORDER_Y + BORDER_THICKNESS));
+		wr32(RAM_DL + (index+=4), vertex2f(BATTERY_BORDER_X, BATTERY_BORDER_Y + BORDER_THICKNESS));
+		wr32(RAM_DL + (index+=4), vertex2f(BATTERY_BORDER_X + BORDER_THICKNESS, BATTERY_BORDER_Y + BATTERY_BORDER_HEIGHT));
 
 		//Calculation for the Battery bar
-		Height_Offset = (429 - 67) * (100U - Battery_Percentage) / 100U;
+		Height_Offset = (450 - 60) * (100U - Battery_Percentage) / 100U;
 		//Battery percentage fill
 
 		if(Battery_Percentage <= 50U)
@@ -865,8 +865,9 @@ void Display_Update(uint8_t Acceleration, uint8_t Brake, uint8_t Battery_Percent
 		}
 
 		wr32(RAM_DL + (index+=4), color_rgb(Red, Green, Blue));
-		wr32(RAM_DL + (index+=4), vertex2f(VERTICAL_BATTERY_BORDER + 10, VERTICAL_BATTERY_BORDER_ORIGIN - BORDER_THICKNESS));
-		wr32(RAM_DL + (index+=4), vertex2f(HORIZONTAL_BATTER_BORDER_END, 67 + Height_Offset));
+		wr32(RAM_DL + (index+=4), vertex2f(800, BATTERY_BORDER_Y + BATTERY_BORDER_HEIGHT - BORDER_THICKNESS));
+		wr32(RAM_DL + (index+=4), vertex2f(BATTERY_BORDER_X + BORDER_THICKNESS + 2, BATTERY_BORDER_Y + BORDER_THICKNESS + Height_Offset));
+
 
 		//Dynamic Battery percentage
 		wr32(RAM_DL + (index+=4), vertex_translate_x(8600));
@@ -1079,12 +1080,12 @@ void Display_Update(uint8_t Acceleration, uint8_t Brake, uint8_t Battery_Percent
 		/* WARNING LIGHTS SPACE */
 		wr32(RAM_DL + (index+=4), color_rgb(80, 80, 80));
 		wr32(RAM_DL + (index+=4), begin(RECTS));
-		wr32(RAM_DL + (index+=4), vertex2f(WARNING_LIGHTS_BORDER_START, WARNING_LIGHTS_BORDER_HEIGHT));
-		wr32(RAM_DL + (index+=4), vertex2f(WARNING_LIGHTS_BORDER_END, WARNING_LIGHTS_BORDER_HEIGHT + BORDER_THICKNESS));
-		wr32(RAM_DL + (index+=4), vertex2f(WARNING_LIGHTS_BORDER_START, WARNING_VERTICAL_BORDER_START));
-		wr32(RAM_DL + (index+=4), vertex2f(WARNING_LIGHTS_BORDER_START + BORDER_THICKNESS, WARNING_VERTICAL_BORDER_END));
-		wr32(RAM_DL + (index+=4), vertex2f(WARNING_LIGHTS_BORDER_END, WARNING_VERTICAL_BORDER_START));
-		wr32(RAM_DL + (index+=4), vertex2f(WARNING_LIGHTS_BORDER_END - BORDER_THICKNESS, WARNING_VERTICAL_BORDER_END));
+		wr32(RAM_DL + (index+=4), vertex2f(WARNING_BORDER_X, WARNING_BORDER_Y));
+		wr32(RAM_DL + (index+=4), vertex2f(WARNING_BORDER_X + WARNING_BORDER_WIDTH, WARNING_BORDER_Y + BORDER_THICKNESS));
+		wr32(RAM_DL + (index+=4), vertex2f(WARNING_BORDER_X, WARNING_BORDER_Y));
+		wr32(RAM_DL + (index+=4), vertex2f(WARNING_BORDER_X + BORDER_THICKNESS, WARNING_BORDER_Y - WARNING_BORDER_HEIGHT));
+		wr32(RAM_DL + (index+=4), vertex2f(WARNING_BORDER_X + WARNING_BORDER_WIDTH, WARNING_BORDER_Y));
+		wr32(RAM_DL + (index+=4), vertex2f(WARNING_BORDER_X + WARNING_BORDER_WIDTH - BORDER_THICKNESS, WARNING_BORDER_Y - WARNING_BORDER_HEIGHT));
 		/* END FOR WARNING LIGHTS SPACE */
 
 		//INVERTER_TEMP STATUS
@@ -1210,32 +1211,32 @@ void Display_Update(uint8_t Acceleration, uint8_t Brake, uint8_t Battery_Percent
 		wr32(RAM_DL + (index+=4), line_width(56));
 		wr32(RAM_DL + (index+=4), color_rgb(80, 80, 80));
 		wr32(RAM_DL + (index+=4), begin(LINE_STRIP));
-		wr32(RAM_DL + (index+=4), vertex2f(INVERTER_HORIZONTAL_BORDER_START, LOWER_HORIZONTAL_BORDER_HEIGHT));
-		wr32(RAM_DL + (index+=4), vertex2f(INVERTER_HORIZONTAL_BORDER_END, LOWER_HORIZONTAL_BORDER_HEIGHT));
-		wr32(RAM_DL + (index+=4), vertex2f(MIDDLE_HORIZONTAL_BORDER_START, LOWER_HORIZONTAL_BORDER));
-		wr32(RAM_DL + (index+=4), vertex2f(MIDDLE_HORIZONTAL_BORDER_END, LOWER_HORIZONTAL_BORDER));
-		wr32(RAM_DL + (index+=4), vertex2f(MOTOR_HORIZONTAL_BORDER_START, LOWER_HORIZONTAL_BORDER_HEIGHT));
-		wr32(RAM_DL + (index+=4), vertex2f(MOTOR_HORIZONTAL_BORDER_END, LOWER_HORIZONTAL_BORDER_HEIGHT));
+		wr32(RAM_DL + (index+=4), vertex2f(INVERTER_HORIZONTAL_BORDER, LOWER_HORIZONTAL_BORDER_HEIGHT));
+		wr32(RAM_DL + (index+=4), vertex2f(INVERTER_HORIZONTAL_BORDER + INVERTER_HORIZONTAL_BORDER_WIDTH , LOWER_HORIZONTAL_BORDER_HEIGHT));
+		wr32(RAM_DL + (index+=4), vertex2f(MIDDLE_HORIZONTAL_BORDER_X, MIDDLE_HORIZONTAL_BORDER_Y));
+		wr32(RAM_DL + (index+=4), vertex2f(MIDDLE_HORIZONTAL_BORDER_X + MIDDLE_HORIZONTAL_BORDER_WIDTH, MIDDLE_HORIZONTAL_BORDER_Y));
+		wr32(RAM_DL + (index+=4), vertex2f(MOTOR_HORIZONTAL_BORDER, LOWER_HORIZONTAL_BORDER_HEIGHT));
+		wr32(RAM_DL + (index+=4), vertex2f(MOTOR_HORIZONTAL_BORDER + MOTOR_HORIZONTAL_BORDER_WIDTH, LOWER_HORIZONTAL_BORDER_HEIGHT));
 		wr32(RAM_DL + (index+=4), line_width(48));
 		wr32(RAM_DL + (index+=4), begin(LINES));
-		wr32(RAM_DL + (index+=4), vertex2f(LOWER_INVERTER_DELIMITER, LOWER_HORIZONTAL_BORDER + BORDER_THICKNESS));
-		wr32(RAM_DL + (index+=4), vertex2f(LOWER_INVERTER_DELIMITER, 480));
-		wr32(RAM_DL + (index+=4), vertex2f(LOWER_MOTOR_DELIMITER, LOWER_HORIZONTAL_BORDER + BORDER_THICKNESS));
-		wr32(RAM_DL + (index+=4), vertex2f(LOWER_MOTOR_DELIMITER, 480));
+		wr32(RAM_DL + (index+=4), vertex2f(LOWER_INVERTER_DELIMITER, MIDDLE_HORIZONTAL_BORDER_Y));
+		wr32(RAM_DL + (index+=4), vertex2f(LOWER_INVERTER_DELIMITER, MAX_Y));
+		wr32(RAM_DL + (index+=4), vertex2f(LOWER_MOTOR_DELIMITER, MIDDLE_HORIZONTAL_BORDER_Y));
+		wr32(RAM_DL + (index+=4), vertex2f(LOWER_MOTOR_DELIMITER, MAX_Y));
 
 		/* END FOR LOWER BORDERS DESIGN */
 
 		wr32(RAM_DL + (index+=4), line_width(64));
 		//Data underline
 		wr32(RAM_DL + (index+=4), begin(LINE_STRIP));
-		wr32(RAM_DL + (index+=4), vertex2f(TEMPERATURE_DIAGONAL_LINE_START, TEMPERATURE_DIAGONAL_HEIGHT));
-		wr32(RAM_DL + (index+=4), vertex2f(TEMPERATURE_DIAGONAL_LINE_END, TEMPERATURE_UNDERLINE_HEIGHT));
-		wr32(RAM_DL + (index+=4), vertex2f(TEMPERATURE_UNDERLINE, TEMPERATURE_UNDERLINE_HEIGHT));
+		wr32(RAM_DL + (index+=4), vertex2f(TEMPERATURE_UNDERLINE_X, TEMPERATURE_UNDERLINE_Y));
+		wr32(RAM_DL + (index+=4), vertex2f(TEMPERATURE_UNDERLINE_X + TEMPERATURE_UNDERLINE_WIDTH, TEMPERATURE_UNDERLINE_Y));
+		wr32(RAM_DL + (index+=4), vertex2f(UNDERLINE_END, TEMPERATURE_UNDERLINE_HEIGHT_OFFSET));
 		//Data underline
 		wr32(RAM_DL + (index+=4), begin(LINE_STRIP));
-		wr32(RAM_DL + (index+=4), vertex2f(VOLTAGE_DIAGONAL_LINE_START, VOLTAGE_DIAGONAL_HEIGHT));
-		wr32(RAM_DL + (index+=4), vertex2f(VOLTAGE_DIAGONAL_LINE_END, VOLTAGE_UNDERLINE_HEIGHT));
-		wr32(RAM_DL + (index+=4), vertex2f(VOLTAGE_UNDERLINE, VOLTAGE_UNDERLINE_HEIGHT));
+		wr32(RAM_DL + (index+=4), vertex2f(VOLTAGE_UNDERLINE_X, VOLTAGE_UNDERLINE_Y));
+		wr32(RAM_DL + (index+=4), vertex2f(VOLTAGE_UNDERLINE_X + VOLTAGE_UNDERLINE_WIDTH, VOLTAGE_UNDERLINE_Y));
+		wr32(RAM_DL + (index+=4), vertex2f(UNDERLINE_END, VOLTAGE_UNDERLINE_HEIGHT_OFFSET));
 		wr32(RAM_DL + (index+=4), restore_context());
 
 		wr32(RAM_DL + (index+=4), save_context());
