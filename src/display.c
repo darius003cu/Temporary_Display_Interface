@@ -45,7 +45,7 @@ extern "C" {
  *                                      GLOBAL VARIABLES
 ==================================================================================================*/
 
-Witness Warnings = {.Inverter = false,
+Witnesses_t Warnings = {.Inverter = false,
 		.Battery = false,
 		.Acceleration = false,
 		.Brake = false
