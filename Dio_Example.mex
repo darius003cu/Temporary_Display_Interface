@@ -1204,9 +1204,7 @@
                                  <setting name="GptChannelClkSrcRef" value="/Gpt/Gpt/GptDriverConfiguration/GptClockReferencePoint_1"/>
                                  <setting name="GptChannelTickValueMax" value="65535"/>
                                  <setting name="GptEnableWakeup" value="false"/>
-                                 <array name="GptNotification">
-                                    <setting name="0" value="Gpt_FtmNotification"/>
-                                 </array>
+                                 <array name="GptNotification"/>
                                  <array name="GptChannelEcucPartitionRef"/>
                                  <array name="GptWakeupConfiguration"/>
                               </struct>
