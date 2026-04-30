@@ -127,10 +127,10 @@ int main(void)
 	Platform_Init(NULL_PTR);
 	Gpt_Init(NULL_PTR);
 
-	Gpt_StartTimer(channel, TIMEOUT_VALUE);
-	Gpt_EnableNotification(channel);
+	//Gpt_StartTimer(channel, TIMEOUT_VALUE);
+	//Gpt_EnableNotification(channel);
 
-	//trailingArray();
+	trailingArray();
 	Display_Init();
 	while(1)
 	{
