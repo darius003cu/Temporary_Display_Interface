@@ -589,7 +589,7 @@ void Display_Update(uint8_t Acceleration, uint8_t Brake, uint8_t Battery_Percent
 		wr32(RAM_DL + (index+=4), vertex2f(BATTERY_BORDER_X + BORDER_THICKNESS, BATTERY_BORDER_Y + BATTERY_BORDER_HEIGHT));
 
 		//Calculation for the Battery bar
-		Height_Offset = (450 - 60) * (100U - Battery_Percentage) / 100U;
+		Height_Offset = (415 - 60) * (100U - Battery_Percentage) / 100U;
 		//Battery percentage fill
 
 		if(Battery_Percentage <= 50U)

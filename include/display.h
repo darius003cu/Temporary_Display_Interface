@@ -70,7 +70,7 @@ extern "C"{
 #define BATTERY_BORDER_X							763U
 #define BATTERY_BORDER_Y							60U
 #define BATTERY_BORDER_WIDTH						37U
-#define BATTERY_BORDER_HEIGHT						395U
+#define BATTERY_BORDER_HEIGHT						350U
 
 //Motor Temperature
 #define MOTOR_LIMITED_TEMP							60U
