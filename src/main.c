@@ -81,7 +81,7 @@ extern "C" {
  *                                       GLOBAL FUNCTIONS
 ==================================================================================================*/
 
-/*void Gpt_FtmNotification(void){
+void Gpt_FtmNotification(void){
 	milis++;
 }
 
@@ -91,7 +91,7 @@ uint8_t Get_Seconds(void){
 
 uint8_t Get_Minutes(void){
 	return ((milis / 60000U));
-}*/
+}
 
 /**
  * @brief        Main function of the example
@@ -127,8 +127,8 @@ int main(void)
 	Platform_Init(NULL_PTR);
 	Gpt_Init(NULL_PTR);
 
-	//Gpt_StartTimer(channel, TIMEOUT_VALUE);
-	//Gpt_EnableNotification(channel);
+	Gpt_StartTimer(channel, TIMEOUT_VALUE);
+	Gpt_EnableNotification(channel);
 
 	trailingArray();
 	Display_Init();
